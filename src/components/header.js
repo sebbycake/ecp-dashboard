@@ -8,7 +8,8 @@ const Header = () => {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        flexShrink: 0
     }
 
     const logoStyles = {
