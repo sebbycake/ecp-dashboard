@@ -2,6 +2,7 @@ import * as React from "react"
 import Header from "../components/header/header"
 import MetricCard from "../components/metric-card/metric-card"
 import OrderCard from "../components/order-card/order-card"
+import SelectorBtn from "../components/selector-btn/selector-btn"
 
 // styles
 
