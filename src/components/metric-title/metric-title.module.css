@@ -1,0 +1,6 @@
+.metricTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--title-color);
+    margin-top: 1.5vh;
+}
