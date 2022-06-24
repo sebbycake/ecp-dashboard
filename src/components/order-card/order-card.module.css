@@ -1,0 +1,13 @@
+.ordersMetricCard {
+    background-color: var(--container-color);
+    border-radius: var(--container-border-radius);
+    height: 284px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.ordersPieChart {
+    width: 16vw;
+}
+
