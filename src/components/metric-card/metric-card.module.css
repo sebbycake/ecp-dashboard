@@ -1,0 +1,66 @@
+.metricCard {
+    background-color: var(--container-color);
+    height: 184px;
+    border-radius: var(--container-border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* align-items: flex-start; 
+        cause of the justify content problem
+        for the child elements
+    */
+}
+
+.metricIconContainer {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.iconContainer {
+    background: rgba(20, 121, 255, 0.1);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.metricIconName {
+    color: var(--title-color);
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 6px;
+}
+
+
+.metricDetailsContainer {
+    margin-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.metricNumber {
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--first-color);
+}
+
+.metricGrowthContainer {
+    display: flex;
+    margin-right: 24px;
+    vertical-align: bottom;
+}
+
+.metricGrowthRate {
+    color: var(--title-color);
+    font-weight: 700;
+    margin-left: 4px;
+    margin-top: 2px;
+}
+
+.userIcon, .caretUpIcon {
+    width: 24px;
+}
