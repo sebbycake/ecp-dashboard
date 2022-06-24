@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 180px;
+}
+
+.dropdownBtn {
+    width: 100px;
+    padding: 6px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--container-color);
+    border: 2px solid var(--first-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btnText {
+    color: var(--first-color);
+    font-weight: 600;
+}
+
+.downArrow {
+    width: 32px;
+}

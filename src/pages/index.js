@@ -1,5 +1,5 @@
 import * as React from "react"
-import Header from "../components/header"
+import Header from "../components/header/header"
 import MetricCard from "../components/metric-card"
 import OrderCard from "../components/order-card"
 
