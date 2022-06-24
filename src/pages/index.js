@@ -1,12 +1,12 @@
 import * as React from "react"
 import Header from "../components/header"
 import MetricCard from "../components/metric-card"
+import OrderCard from "../components/order-card"
 
 // styles
 
 
 // data from API
-
 const metricsData = [
   {
     name: "Users",
@@ -37,6 +37,20 @@ const metricsData = [
 
 const metricCardList = metricsData.map(metric => <MetricCard metric={metric} />)
 
+const total_order_card = {
+  canvas_id: "total-orders-pie-chart",
+  totalOrders: "9,000",
+  onlineOrders: "8,000",
+  offlineOrders: "1,000"
+}
+
+const cancelled_order_card = {
+  canvas_id: "cancelled-orders-pie-chart",
+  totalOrders: "5,000",
+  onlineOrders: "4,000",
+  offlineOrders: "1,000"
+}
+
 // markup
 const IndexPage = () => {
   return (
@@ -47,6 +61,9 @@ const IndexPage = () => {
       <div className="metrics-grid">
         {metricCardList}
       </div>
+
+      <OrderCard order_card={total_order_card} />
+      <OrderCard order_card={cancelled_order_card} />
 
     </main>
   )
