@@ -37,3 +37,36 @@ body {
     grid-template-columns: repeat(5, 1fr);
     column-gap: 20px;
 }
+
+/* Top Container */
+.orders-card-container {
+    display: grid;
+    column-gap: 20px;
+    grid-template-areas:
+        'orders-metric-card-a orders-grid-container'
+        'orders-metric-card-b orders-grid-container';
+    grid-template-columns: 1fr 2fr;
+}
+
+.orders-metric-card-a {
+    grid-area: orders-metric-card-a;
+}
+
+.orders-metric-card-b {
+    grid-area: orders-metric-card-b;
+}
+
+.orders-grid-container {
+    grid-area: orders-grid-container;
+}
+
+.orders-charts {
+    margin-top: 1vh;
+}
+
+.orders-charts-container {
+    background-color: var(--container-color);
+    border-radius: 24px;
+    height: 550px;
+    margin-top: 10px;
+}

@@ -3,9 +3,7 @@ import Header from "../components/header/header"
 import MetricCard from "../components/metric-card/metric-card"
 import OrderCard from "../components/order-card/order-card"
 import MetricTitle from "../components/metric-title/metric-title"
-
-// styles
-
+import SelectorBtnList from "../components/selector-btn-list/selector-btn-list"
 
 // data from API
 const metricsData = [
@@ -59,12 +57,38 @@ const IndexPage = () => {
 
       <Header />
 
+      <MetricTitle title="Quarterly Overview" />
+
       <div className="metrics-grid">
         {metricCardList}
       </div>
 
-      <OrderCard order_card={total_order_card} />
-      <OrderCard order_card={cancelled_order_card} />
+      <section className="orders-card-container">
+
+        <div className="orders-grid-container">
+          <MetricTitle title="Online Orders By Category" />
+          <div className="orders-charts">
+            <SelectorBtnList />
+            <div class="orders-charts-container">
+              <div class="orders-combo-chart">
+                <canvas id="online-orders-combo-chart"></canvas>
+              </div>
+            </div>
+          </div> {/* end of orders charts */}
+        </div> {/* end of grid container */}
+
+        <div class="orders-metric-card-a">
+          <MetricTitle title="Orders By Channel" />
+          <OrderCard order_card={total_order_card} />
+        </div>
+
+
+        <div class="orders-metric-card-b">
+          <MetricTitle title="Cancelled Orders By Channel" />
+          <OrderCard order_card={cancelled_order_card} />
+        </div>
+
+      </section>
 
     </main>
   )
