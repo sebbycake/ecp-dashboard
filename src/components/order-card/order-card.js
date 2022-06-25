@@ -1,12 +1,12 @@
 import React from "react";
 import * as styles from "./order-card.module.css"
 
-const OrderCard = ({order_card}) => {
+const OrderCard = ({order_card, chart}) => {
 
     return (
         <div className={styles.ordersMetricCard}>
             <div className={styles.ordersPieChart}>
-                <canvas id={order_card.canvas_id}></canvas>
+                {chart}
             </div>
             <div>
                 <div>{order_card.totalOrders}</div>
