@@ -6,7 +6,7 @@ import { Chart as ChartJS , registerables } from 'chart.js'
 
 // local components import
 import Header from "../components/header/header"
-import MetricCard from "../components/metric-card/metric-card"
+import MetricCardList from "../components/metric-card-list/metric-card-list"
 import OrderCard from "../components/order-card/order-card"
 import MetricTitle from "../components/metric-title/metric-title"
 import SelectorBtnList from "../components/selector-btn-list/selector-btn-list"
@@ -14,35 +14,14 @@ import SelectorBtnList from "../components/selector-btn-list/selector-btn-list"
 ChartJS.register(...registerables)
 
 // data from API
-const metricsData = [
-  {
-    name: "Users",
-    number: 580,
-    growth_rate: 0.25
-  },
-  {
-    name: "2-way Comms",
-    number: 300,
-    growth_rate: 0.15
-  },
-  {
-    name: "Reports",
-    number: 250,
-    growth_rate: 0.07
-  },
-  {
-    name: "Invoices",
-    number: 600,
-    growth_rate: 0.05
-  },
-  {
-    name: "Notifications",
-    number: 105,
-    growth_rate: -0.10
-  }
-]
 
-const metricCardList = metricsData.map(metric => <MetricCard metric={metric} />)
+const metricsData = [
+  {stats: 580, growth_rate: 0.25},
+  {stats: 300, growth_rate: 0.15},
+  {stats: 250, growth_rate: 0.07},
+  {stats: 600, growth_rate: 0.05},
+  {stats: 105, growth_rate: -0.10},
+]
 
 const total_order_card = {
   canvas_id: "total-orders-pie-chart",
@@ -111,9 +90,7 @@ const IndexPage = () => {
 
       <MetricTitle title="Quarterly Overview" />
 
-      <div className="metrics-grid">
-        {metricCardList}
-      </div>
+      <MetricCardList data={metricsData}/>
 
       <section className="orders-card-container">
 

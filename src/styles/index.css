@@ -31,13 +31,6 @@ body {
     padding: 24px;
 }
 
-.metrics-grid {
-    margin-top: 4px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 20px;
-}
-
 /* Top Container */
 .orders-card-container {
     display: grid;
