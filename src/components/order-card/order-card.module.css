@@ -11,3 +11,8 @@
     max-width: 13vw;
 }
 
+.totalOrders {
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--first-color);
+}

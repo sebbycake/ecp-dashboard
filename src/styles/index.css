@@ -60,6 +60,6 @@ body {
 .orders-charts-container {
     background-color: var(--container-color);
     border-radius: 24px;
-    height: 550px;
+    height: 610px;
     margin-top: 10px;
 }

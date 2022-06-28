@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 // charts components import
 import { Chart } from 'react-chartjs-2';
@@ -123,7 +123,7 @@ const specific_order_type_data = {
 
 const line_chart_options = {
   responsive: true,
-  aspectRatio: 1.5,
+  aspectRatio: 5,
   maintainAspectRatio: true,
   plugins: {
     legend: {
@@ -175,7 +175,7 @@ const IndexPage = () => {
           <div className="orders-charts">
             {/* <SelectorBtnList /> */}
             <div class="orders-charts-container">
-              <div class="orders-combo-chart">
+              <div class="orders-combo-chart" style={{height:'40vh',position: 'relative'}}>
                 {/* <canvas id="online-orders-combo-chart"></canvas> */}
                 <Chart type="line" data={specific_order_type_data} options={line_chart_options} />
               </div>

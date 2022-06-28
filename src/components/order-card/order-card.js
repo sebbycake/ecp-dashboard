@@ -9,7 +9,7 @@ const OrderCard = ({order_card, chart}) => {
                 {chart}
             </div>
             <div>
-                <div>{order_card.totalOrders}</div>
+                <div className={styles.totalOrders}>{order_card.totalOrders}</div>
                 <div>{`Online: ${order_card.onlineOrders}`}</div>
                 <div>{`Offline: ${order_card.offlineOrders}`}</div>
             </div>
