@@ -63,3 +63,8 @@ body {
     height: 610px;
     margin-top: 10px;
 }
+
+.orders-combo-chart {
+    width: inherit;
+    height: inherit;
+}

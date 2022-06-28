@@ -50,9 +50,11 @@ const renderOrdersData = (data_list) => {
 }
 
 const pie_chart_options = {
+  // responsive: true,
+  // aspectRatio: 1.2,
+  // maintainAspectRatio: true,
   responsive: true,
-  aspectRatio: 1.2,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'bottom',
@@ -79,42 +81,47 @@ const specific_order_type_data = {
   datasets: [
     {
       label: 'Smart Hands',
-      backgroundColor: 'rgb(255, 99, 132)',
+      fill: true,
+      backgroundColor: 'rgba(255, 99, 132, 0.4)',
       borderColor: 'rgb(255, 99, 132)',
       data: [73, 75, 74, 77],
     },
     {
       label: 'Cross Connect',
-      backgroundColor: '#085f63',
-      borderColor: '#085f63',
+      fill: true,
+      backgroundColor: 'rgba(8, 95, 99, 0.4)',
+      borderColor: 'rgb(8, 95, 99)',
       data: [77, 78, 78, 78],
       hidden: true,
     },
     {
       label: 'Fabric Port',
-      backgroundColor: '#eac100',
-      borderColor: '#eac100',
+      fill: true,
+      backgroundColor: 'rgba(234, 193, 0, 0.4)',
+      borderColor: 'rgb(234, 193, 0)',
       data: [42, 42, 44, 46],
       hidden: true,
     },
     {
       label: 'Equinix Connect',
-      backgroundColor: '#1e2a78',
-      borderColor: '#1e2a78',
+      fill: true,
+      backgroundColor: 'rgba(30, 42, 120, 0.4)',
+      borderColor: 'rgb(30, 42, 120)',
       data: [10, 9, 10, 13],
       hidden: true,
     },
     {
       label: 'Internet Exchange',
-      backgroundColor: '#5d5d5a',
-      borderColor: '#5d5d5a',
+      fill: true,
+      backgroundColor: 'rgba(93, 93, 90, 0.4)',
+      borderColor: 'rgb(93, 93, 90)',
       data: [16, 17, 10, 10],
       hidden: true,
     },
     {
       label: 'Metro Connect',
-      backgroundColor: '#2f89fc',
-      borderColor: '#2f89fc',
+      backgroundColor: 'rgba(47, 137, 252, 0.4)',
+      borderColor: 'rgb(47, 137, 252)',
       data: [49, 45, 46, 50],
       hidden: true,
     },
@@ -123,8 +130,7 @@ const specific_order_type_data = {
 
 const line_chart_options = {
   responsive: true,
-  aspectRatio: 5,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'bottom',
@@ -175,8 +181,7 @@ const IndexPage = () => {
           <div className="orders-charts">
             {/* <SelectorBtnList /> */}
             <div class="orders-charts-container">
-              <div class="orders-combo-chart" style={{height:'40vh',position: 'relative'}}>
-                {/* <canvas id="online-orders-combo-chart"></canvas> */}
+              <div class="orders-combo-chart">
                 <Chart type="line" data={specific_order_type_data} options={line_chart_options} />
               </div>
             </div>

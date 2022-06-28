@@ -8,7 +8,8 @@
 }
 
 .ordersPieChart {
-    max-width: 13vw;
+    height: 220px;
+    width: inherit;
 }
 
 .totalOrders {
