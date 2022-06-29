@@ -1,0 +1,37 @@
+/* Top Container */
+.ordersCardContainer {
+    display: grid;
+    column-gap: 20px;
+    grid-template-areas:
+        'orders-metric-card-a orders-grid-container'
+        'orders-metric-card-b orders-grid-container';
+    grid-template-columns: 1fr 2fr;
+}
+
+.ordersMetricCardA {
+    grid-area: orders-metric-card-a;
+}
+
+.ordersMetricCardB {
+    grid-area: orders-metric-card-b;
+}
+
+.ordersGridContainer {
+    grid-area: orders-grid-container;
+}
+
+.ordersCharts {
+    margin-top: 1vh;
+}
+
+.ordersChartsContainer {
+    background-color: var(--container-color);
+    border-radius: 24px;
+    height: 610px;
+    margin-top: 10px;
+}
+
+.ordersComboChart {
+    width: inherit;
+    height: inherit;
+}
