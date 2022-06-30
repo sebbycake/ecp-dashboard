@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as styles from "./charts-container.module.css"
 import MetricTitle from "../metric-title/metric-title";
 import OrderCard from "../order-card/order-card"
@@ -11,55 +11,37 @@ ChartJS.register(...registerables)
 
 const ChartsContainer = () => {
 
-    const total_order_card = {
-        canvas_id: "total-orders-pie-chart",
-        totalOrders: "9,000",
-        onlineOrders: "8,000",
-        offlineOrders: "1,000"
-    }
+    // const [totalOrdersData, setTotalOrdersData] = useState([])
+    // const [cancelledOrdersData, setCancelledOrdersData] = useState([])
 
-    const cancelled_order_card = {
-        canvas_id: "cancelled-orders-pie-chart",
-        totalOrders: "5,000",
-        onlineOrders: "4,000",
-        offlineOrders: "1,000"
-    }
+    // useEffect(() => {
+    //     fetch('API_URL')
+    //         .then(response => response.json())
+    //         .then(json => setTotalOrdersData(json.data))
+    // }, [])
 
-    const renderOrdersData = (data_list) => {
-        const orders_data = {
-            labels: ['Online', 'Offline'],
-            datasets: [{
-                data: data_list,
-                backgroundColor: ['#043776', '#53B7E8'],
-                hoverOffset: 4
-            }]
-        }
-        return orders_data
-    }
-
-    const pie_chart_options = {
-        // responsive: true,
-        // aspectRatio: 1.2,
-        // maintainAspectRatio: true,
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'bottom',
-                labels: {
-                    boxWidth: 12,
-                    boxHeight: 12
-                }
-            },
-            tooltip: {
-                callbacks: {
-                    label: (context) => {
-                        return `${context.parsed}%`
-                    }
-                }
+    const mock_orders_json_response = [
+        {
+            "orderYear": "2022",
+            "orderQuarter": "1",
+            "numOforders": 2584,
+            "composition": {
+                "online": 0.11,
+                "offline": 0.89
             }
         },
-    }
+        {
+            "orderYear": "2021",
+            "orderQuarter": "4",
+            "numOforders": 502,
+            "composition": {
+                "online": 0.28,
+                "offline": 0.71
+            }
+        },
+    ]
+
+    // --------------------------------------------------------------------------
 
     const specific_order_type_data = {
         labels: ['Q2 2021', 'Q3 2021', 'Q4 2021', 'Q1 2022'],
@@ -173,12 +155,12 @@ const ChartsContainer = () => {
 
             <div className={styles.ordersMetricCardA}>
                 <MetricTitle title="Orders By Channel" />
-                <OrderCard order_card={total_order_card} chart={<Chart type="pie" data={renderOrdersData([65, 35])} options={pie_chart_options} />} />
+                <OrderCard ordersDataObj={mock_orders_json_response[0]} />
             </div>
 
             <div className={styles.ordersMetricCardB}>
                 <MetricTitle title="Cancelled Orders By Channel" />
-                <OrderCard order_card={cancelled_order_card} chart={<Chart type="pie" data={renderOrdersData([80, 20])} options={pie_chart_options} />} />
+                <OrderCard ordersDataObj={mock_orders_json_response[1]} />
             </div>
 
         </section>
