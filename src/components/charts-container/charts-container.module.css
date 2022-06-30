@@ -23,15 +23,3 @@
 .ordersCharts {
     margin-top: 1vh;
 }
-
-.ordersChartsContainer {
-    background-color: var(--container-color);
-    border-radius: 24px;
-    height: 610px;
-    margin-top: 10px;
-}
-
-.ordersComboChart {
-    width: inherit;
-    height: inherit;
-}
