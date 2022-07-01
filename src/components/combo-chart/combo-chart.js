@@ -74,6 +74,11 @@ const ComboChart = () => {
                 position: 'bottom',
                 reverse: true,
             },
+            datalabels: {
+                labels: {
+                    title: null
+                }
+            }
         },
         scales: {
             x: {

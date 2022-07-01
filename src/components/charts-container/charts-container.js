@@ -32,22 +32,14 @@ const ChartsContainer = () => {
 
     const mock_orders_json_response = [
         {
-            "orderYear": "2022",
-            "orderQuarter": "1",
-            "numOforders": 2584,
-            "composition": {
-                "online": 0.11,
-                "offline": 0.89
-            }
+            "quarter": "2022 Q1",
+            "onlineOrders": 4000,
+            "offlineOrders": 1000
         },
         {
-            "orderYear": "2021",
-            "orderQuarter": "4",
-            "numOforders": 502,
-            "composition": {
-                "online": 0.28,
-                "offline": 0.71
-            }
+            "quarter": "2021 Q4",
+            "onlineOrders": 143,
+            "offlineOrders": 358
         },
     ]
 
