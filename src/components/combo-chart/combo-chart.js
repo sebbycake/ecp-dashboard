@@ -29,23 +29,37 @@ const ComboChart = () => {
         labels: ['Q2 2021', 'Q3 2021', 'Q4 2021', 'Q1 2022'],
         datasets: [
             {
-                label: "Orders",
+                label: "Total Orders",
                 backgroundColor: '#043776',
                 borderColor: '#043776',
-                data: chartData[0], 
+                data: chartData[0],     
                 type: "bar",
                 yAxisID: 'y',
-                order: 2
+                order: 2,
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            return `${context.dataset.label}: ${context.raw}K`
+                        }
+                    }
+                }
             },
             {
-                label: "Online Composition",
+                label: "Online Orders (ECP + CSC)",
                 backgroundColor: '#A1A1A4',
                 borderColor: '#A1A1A4',
                 data: chartData[1],
                 type: 'line',
                 yAxisID: 'percentage',
                 order: 1,
-                borderWidth: 5
+                borderWidth: 5,
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            return `${context.dataset.label}: ${context.raw}%`
+                        }
+                    }
+            }
             },
         ] // end of datasets key
     }
@@ -77,7 +91,7 @@ const ComboChart = () => {
                     callback: (value, index, values) => {
                         return `${value}K`
                     }
-                }
+                },
             },
             percentage: {
                 type: 'linear',

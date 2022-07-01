@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as styles from "./charts-container.module.css"
+import axios from 'axios'
 import MetricTitle from "../metric-title/metric-title";
 import OrderCard from "../order-card/order-card"
 import ComboChart from "../combo-chart/combo-chart"
@@ -10,10 +11,24 @@ const ChartsContainer = () => {
     // const [cancelledOrdersData, setCancelledOrdersData] = useState([])
 
     // useEffect(() => {
-    //     fetch('API_URL')
-    //         .then(response => response.json())
+    //     axios.get('API_URL')
+    //         .then(response => response.data)
     //         .then(json => setTotalOrdersData(json.data))
     // }, [])
+
+    // set all headers here
+    const headersObj = {
+        'Test-Header1': 'test-value',
+        'Test-Header2': 'test-value',
+        'Test-Header3': 'test-value',
+    }
+
+    // testing API
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts/1', {'headers': headersObj})
+            .then(response => response.data)
+            .then(resp => console.log(resp))
+    }, [])
 
     const mock_orders_json_response = [
         {
