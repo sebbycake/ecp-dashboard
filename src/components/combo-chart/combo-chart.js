@@ -7,22 +7,193 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 ChartJS.register(...registerables)
 
 const ComboChart = () => {
+    
+    const SHData = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 120,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 102,
+            "offlineOrders": 44
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 40
+        }
+    ]
 
-    const SHData = [[51, 52, 53, 54], [74, 75, 76, 77]]
-    const CCData = [[44, 42, 45, 40], [70, 71, 72, 73]]
-    const FPData = [[31, 32, 33, 34], [60, 61, 66, 67]]
-    const ECData = [[11, 32, 13, 24], [15, 11, 10, 17]]
-    const IXData = [[51, 52, 53, 54], [84, 76, 71, 70]]
-    const MCData = [[44, 43, 44, 45], [10, 11, 12, 13]]
+    const CCData = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 120,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 102,
+            "offlineOrders": 55
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 100
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 92
+        }
+    ]
 
-    const [chartData, setChartData] = useState(SHData)
+    const FPData = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 120,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 102,
+            "offlineOrders": 55
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 100
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 92
+        }
+    ]
+
+    const ECData = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 80,
+            "offlineOrders": 30
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 102,
+            "offlineOrders": 55
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 100
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 92
+        }
+    ]
+
+    const IXData = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 100,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 102,
+            "offlineOrders": 55
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 100
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 92
+        }
+    ]
+
+    const MCData = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 120,
+            "offlineOrders": 30
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 70,
+            "offlineOrders": 30
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 100
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 92
+        }
+    ]
+
+    const calculateTotalOrders = (data) => {
+        const totalOrders = []
+        data.forEach(obj => {
+            totalOrders.push(obj.onlineOrders + obj.offlineOrders)
+        })
+        return totalOrders.reverse()
+    }
+
+    const calculateOnlineComposition = (data) => {
+        const onlineComposition = []
+        data.forEach(obj => {
+            const totalOrders = obj.onlineOrders + obj.offlineOrders
+            onlineComposition.push(parseInt((obj.onlineOrders / totalOrders * 100).toFixed(1), 10))
+        })
+        return onlineComposition.reverse()
+    }
+
     const [isActive, setIsActive] = useState([1, 0, 0, 0, 0, 0])
+    const [currData, setCurrData] = useState(SHData)
+    const [chartData, setChartData] = useState([calculateTotalOrders(currData), calculateOnlineComposition(currData)])
+
+    const updateState = (data, action) => {
+        if (action === 'add') {
+            for (let i = 0; i < currData.length; i++) {
+                currData[i].onlineOrders += data[i].onlineOrders
+                currData[i].offlineOrders += data[i].offlineOrders
+            }
+        }
+        if (action === 'subtract') {
+            for (let i = 0; i < currData.length; i++) {
+                currData[i].onlineOrders -= data[i].onlineOrders
+                currData[i].offlineOrders -= data[i].offlineOrders
+            }
+        }
+        setCurrData(currData)
+        setChartData([calculateTotalOrders(currData), calculateOnlineComposition(currData)])
+    }
 
     const handleClick = (data, index) => {
-        setChartData(data)
-        let resetIndices = [0, 0, 0, 0, 0, 0]
-        resetIndices[index] = 1
-        setIsActive(resetIndices)
+        if (isActive[index] === 1) {
+            updateState(data, 'subtract')
+            isActive[index] = 0
+            setIsActive(isActive)
+        } else {
+            updateState(data, 'add')
+            isActive[index] = 1
+            setIsActive(isActive)
+        }
     }
 
     const orders_data = {
@@ -36,13 +207,13 @@ const ComboChart = () => {
                 type: "bar",
                 yAxisID: 'y',
                 order: 2,
-                tooltip: {
-                    callbacks: {
-                        label: (context) => {
-                            return `${context.dataset.label}: ${context.raw}K`
-                        }
-                    }
-                }
+                // tooltip: {
+                //     callbacks: {
+                //         label: (context) => {
+                //             return `${context.dataset.label}: ${context.raw}K`
+                //         }
+                //     }
+                // }
             },
             {
                 label: "Online Orders (ECP + CSC)",
@@ -92,11 +263,11 @@ const ComboChart = () => {
                 },
                 type: 'linear',
                 position: 'left',
-                ticks: {
-                    callback: (value, index, values) => {
-                        return `${value}K`
-                    }
-                },
+                // ticks: {
+                //     callback: (value, index, values) => {
+                //         return `${value}K`
+                //     }
+                // },
             },
             percentage: {
                 type: 'linear',
