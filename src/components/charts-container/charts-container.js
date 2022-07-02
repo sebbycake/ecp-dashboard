@@ -5,7 +5,7 @@ import MetricTitle from "../metric-title/metric-title";
 import OrderCard from "../order-card/order-card"
 import ComboChart from "../combo-chart/combo-chart"
 
-const ChartsContainer = () => {
+const ChartsContainer = ({ quarter }) => {
 
     // const [totalOrdersData, setTotalOrdersData] = useState([])
     // const [cancelledOrdersData, setCancelledOrdersData] = useState([])
@@ -38,8 +38,41 @@ const ChartsContainer = () => {
         },
         {
             "quarter": "2021 Q4",
-            "onlineOrders": 143,
-            "offlineOrders": 358
+            "onlineOrders": 3800,
+            "offlineOrders": 983
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 3530,
+            "offlineOrders": 880
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 3400,
+            "offlineOrders": 777
+        },
+    ]
+
+    const mock_cancelled_orders_json_response = [
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 200,
+            "offlineOrders": 100
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 80,
+            "offlineOrders": 30
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 79,
+            "offlineOrders": 44
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 233,
+            "offlineOrders": 111
         },
     ]
 
@@ -55,12 +88,12 @@ const ChartsContainer = () => {
 
             <div className={styles.ordersMetricCardA}>
                 <MetricTitle title="Orders By Channel" />
-                <OrderCard ordersDataObj={mock_orders_json_response[0]} />
+                <OrderCard ordersDataObj={mock_orders_json_response[quarter]} />
             </div>
 
             <div className={styles.ordersMetricCardB}>
                 <MetricTitle title="Cancelled Orders By Channel" />
-                <OrderCard ordersDataObj={mock_orders_json_response[1]} />
+                <OrderCard ordersDataObj={mock_cancelled_orders_json_response[quarter]} />
             </div>
 
         </section>

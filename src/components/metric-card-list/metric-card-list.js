@@ -10,15 +10,147 @@ import reportIcon from "../../images/icons/report.png"
 import invoiceIcon from "../../images/icons/invoice.png"
 import notificationIcon from "../../images/icons/notification.png"
 
-const MetricCardList = () => {
+const MetricCardList = ({ quarter }) => {
 
-    // dummy data
-    const metricsData = [
-        { stats: 580, growth_rate: 0.25 },
-        { stats: 300, growth_rate: 0.15 },
-        { stats: 250, growth_rate: 0.07 },
-        { stats: 600, growth_rate: 0.05 },
-        { stats: 105, growth_rate: -0.10 },
+    const dummyUsersData = [
+        {
+            "quarter": "2022 Q1",
+            "userAccounts": 1406,
+            "growthRate": -0.11
+        },
+        {
+            "quarter": "2021 Q4",
+            "userAccounts": 2324,
+            "growthRate": -0.09
+        },
+        {
+            "quarter": "2021 Q3",
+            "userAccounts": 2623,
+            "growthRate": 0.39
+        },
+        {
+            "quarter": "2021 Q2",
+            "userAccounts": 1371,
+            "growthRate": 0.18
+        },
+        {
+            "quarter": "2021 Q1",
+            "userAccounts": 1806,
+            "growthRate": -0.10
+        }
+    ]
+
+    const dummytwoWayCommsData = [
+        {
+            "quarter": "2022 Q1",
+            "totalNumber": 502,
+            "growthRate": -0.04
+        },
+        {
+            "quarter": "2021 Q4",
+            "totalNumber": 482,
+            "growthRate": -0.13
+        },
+        {
+            "quarter": "2021 Q3",
+            "totalNumber": 443,
+            "growthRate": -0.33
+        },
+        {
+            "quarter": "2021 Q2",
+            "totalNumber": 388,
+            "growthRate": 0.44
+        },
+        {
+            "quarter": "2021 Q1",
+            "totalNumber": 2131,
+            "growthRate": -0.66
+        }
+    ]
+
+    const dummyReportsData = [
+        {
+            "quarter": "2022 Q1",
+            "reports": 800,
+            "growthRate": 0.12
+        },
+        {
+            "quarter": "2021 Q4",
+            "reports": 700,
+            "growthRate": 0.13
+        },
+        {
+            "quarter": "2021 Q3",
+            "reports": 650,
+            "growthRate": 0.11
+        },
+        {
+            "quarter": "2021 Q2",
+            "reports": 634,
+            "growthRate": 0.16
+        },
+        {
+            "quarter": "2021 Q1",
+            "reports": 555,
+            "growthRate": 0.11
+        }
+    ]
+
+    
+    const dummyInvoicesData = [
+        {
+            "quarter": "2022 Q1",
+            "invoices": 100,
+            "growthRate": 0.05
+        },
+        {
+            "quarter": "2021 Q4",
+            "invoices": 90,
+            "growthRate": 0.11
+        },
+        {
+            "quarter": "2021 Q3",
+            "invoices": 80,
+            "growthRate": 0.10
+        },
+        {
+            "quarter": "2021 Q2",
+            "invoices": 70,
+            "growthRate": 0.09
+        },
+        {
+            "quarter": "2021 Q1",
+            "invoices": 65,
+            "growthRate": 0.11
+        }
+    ]
+
+    const dummyNotificationsData = [
+        {
+            "quarter": "2022 Q1",
+            "notifications": 123,
+            "growthRate": 0.10
+        },
+        {
+            "quarter": "2021 Q4",
+            "notifications": 111,
+            "growthRate": 0.05
+        },
+        {
+            "quarter": "2021 Q3",
+            "notifications": 102,
+            "growthRate": 0.04
+        },
+        {
+            "quarter": "2021 Q2",
+            "notifications": 104,
+            "growthRate": 0.03
+        },
+        {
+            "quarter": "2021 Q1",
+            "notifications": 101,
+            "growthRate": 0.01
+        }
     ]
 
     const [users, setUsers] = useState([])
@@ -60,17 +192,11 @@ const MetricCardList = () => {
         <div>
             <MetricTitle title="Quarterly Overview" />
             <div className={styles.metricsGrid}>
-                {/* dummy data  */}
-                <MetricCard title="Users" icon={userIcon} stats={metricsData[0].stats} growth_rate={metricsData[0].growth_rate} />
-                <MetricCard title="2-way Comms" icon={commsIcon} stats={metricsData[1].stats} growth_rate={metricsData[1].growth_rate} />
-                <MetricCard title="Reports" icon={reportIcon} stats={metricsData[2].stats} growth_rate={metricsData[2].growth_rate} />
-                <MetricCard title="Invoices" icon={invoiceIcon} stats={metricsData[3].stats} growth_rate={metricsData[3].growth_rate} />
-                <MetricCard title="Notifications" icon={notificationIcon} stats={metricsData[4].stats} growth_rate={metricsData[4].growth_rate} />
-                {/* <MetricCard title="Users" icon={userIcon} stats={users[0].userAccounts} growth_rate={users[0].growthRate} />
-                <MetricCard title="2-way Comms" icon={commsIcon} stats={comms[0].totalNumber} growth_rate={comms[0].growthRate} />
-                <MetricCard title="Reports" icon={reportIcon} stats={reports[0].stats} growth_rate={reports[0].growthRate} />
-                <MetricCard title="Invoices" icon={invoiceIcon} stats={invoices[0].stats} growth_rate={invoices[0].growthRate} />
-                <MetricCard title="Notifications" icon={notificationIcon} stats={notifications[0].stats} growth_rate={notifications[0].growthRate} /> */}
+                <MetricCard title="Users" icon={userIcon} stats={dummyUsersData[quarter].userAccounts} growth_rate={dummyUsersData[quarter].growthRate} />
+                <MetricCard title="2-way Comms" icon={commsIcon} stats={dummytwoWayCommsData[quarter].totalNumber} growth_rate={dummytwoWayCommsData[quarter].growthRate} />
+                <MetricCard title="Reports" icon={reportIcon} stats={dummyReportsData[quarter].reports} growth_rate={dummyReportsData[quarter].growthRate} />
+                <MetricCard title="Invoices" icon={invoiceIcon} stats={dummyInvoicesData[quarter].invoices} growth_rate={dummyInvoicesData[quarter].growthRate} />
+                <MetricCard title="Notifications" icon={notificationIcon} stats={dummyNotificationsData[quarter].notifications} growth_rate={dummyNotificationsData[quarter].growthRate} />
             </div>
         </div>
     )

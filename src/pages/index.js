@@ -11,10 +11,10 @@ const IndexPage = () => {
     <main>
 
       <Header />
-
+{/* 
       <MetricCardList />
 
-      <ChartsContainer />
+      <ChartsContainer /> */}
 
     </main>
   )
