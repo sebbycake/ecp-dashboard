@@ -4,10 +4,13 @@ import * as styles from "./header.module.css"
 
 import StateContainer from "../state-container/state-container"
 
+import Loader from "../loader/loader"
+
 const Header = () => {
 
     const [quarter, setQuarter] = useState(0);
     const [listOfQuarters, setListOfQuarters] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     const handleChange = (e) => {
         setQuarter(e.target.value);
@@ -52,6 +55,9 @@ const Header = () => {
 
     useEffect(() => {
         extractQuarters(sampleData)
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 2000)
     }, [])
 
     return (
@@ -67,7 +73,7 @@ const Header = () => {
                     <option className={styles.options} value="3">{listOfQuarters[3]}</option>
                 </select>
             </div>
-            <StateContainer quarter={quarter}/>
+            { isLoading ? <Loader /> : <StateContainer quarter={quarter} /> }
         </div>
     )
 
