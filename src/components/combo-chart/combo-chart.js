@@ -1,150 +1,15 @@
 import React, { useState } from "react";
 import * as styles from "./combo-chart.module.css"
+import axios from 'axios'
 
 import { Chart } from "react-chartjs-2"
 import { Chart as ChartJS, registerables } from 'chart.js';
 
+import data from '../../dummy-data/charts-data'
+
 ChartJS.register(...registerables)
 
 const ComboChart = () => {
-    
-    const SHData = [
-        {
-            "quarter": "2022 Q1",
-            "onlineOrders": 120,
-            "offlineOrders": 50
-        },
-        {
-            "quarter": "2021 Q4",
-            "onlineOrders": 102,
-            "offlineOrders": 44
-        },
-        {
-            "quarter": "2021 Q3",
-            "onlineOrders": 100,
-            "offlineOrders": 50
-        },
-        {
-            "quarter": "2021 Q2",
-            "onlineOrders": 99,
-            "offlineOrders": 40
-        }
-    ]
-
-    const CCData = [
-        {
-            "quarter": "2022 Q1",
-            "onlineOrders": 120,
-            "offlineOrders": 50
-        },
-        {
-            "quarter": "2021 Q4",
-            "onlineOrders": 102,
-            "offlineOrders": 55
-        },
-        {
-            "quarter": "2021 Q3",
-            "onlineOrders": 100,
-            "offlineOrders": 100
-        },
-        {
-            "quarter": "2021 Q2",
-            "onlineOrders": 99,
-            "offlineOrders": 92
-        }
-    ]
-
-    const FPData = [
-        {
-            "quarter": "2022 Q1",
-            "onlineOrders": 120,
-            "offlineOrders": 50
-        },
-        {
-            "quarter": "2021 Q4",
-            "onlineOrders": 102,
-            "offlineOrders": 55
-        },
-        {
-            "quarter": "2021 Q3",
-            "onlineOrders": 100,
-            "offlineOrders": 100
-        },
-        {
-            "quarter": "2021 Q2",
-            "onlineOrders": 99,
-            "offlineOrders": 92
-        }
-    ]
-
-    const ECData = [
-        {
-            "quarter": "2022 Q1",
-            "onlineOrders": 80,
-            "offlineOrders": 30
-        },
-        {
-            "quarter": "2021 Q4",
-            "onlineOrders": 102,
-            "offlineOrders": 55
-        },
-        {
-            "quarter": "2021 Q3",
-            "onlineOrders": 100,
-            "offlineOrders": 100
-        },
-        {
-            "quarter": "2021 Q2",
-            "onlineOrders": 99,
-            "offlineOrders": 92
-        }
-    ]
-
-    const IXData = [
-        {
-            "quarter": "2022 Q1",
-            "onlineOrders": 100,
-            "offlineOrders": 50
-        },
-        {
-            "quarter": "2021 Q4",
-            "onlineOrders": 102,
-            "offlineOrders": 55
-        },
-        {
-            "quarter": "2021 Q3",
-            "onlineOrders": 100,
-            "offlineOrders": 100
-        },
-        {
-            "quarter": "2021 Q2",
-            "onlineOrders": 99,
-            "offlineOrders": 92
-        }
-    ]
-
-    const MCData = [
-        {
-            "quarter": "2022 Q1",
-            "onlineOrders": 120,
-            "offlineOrders": 30
-        },
-        {
-            "quarter": "2021 Q4",
-            "onlineOrders": 70,
-            "offlineOrders": 30
-        },
-        {
-            "quarter": "2021 Q3",
-            "onlineOrders": 100,
-            "offlineOrders": 100
-        },
-        {
-            "quarter": "2021 Q2",
-            "onlineOrders": 99,
-            "offlineOrders": 92
-        }
-    ]
 
     const calculateTotalOrders = (data) => {
         const totalOrders = []
@@ -163,9 +28,41 @@ const ComboChart = () => {
         return onlineComposition.reverse()
     }
 
+    const [smartHands, setSmartHands] = useState(data.smartHands)
+    const [crossConnect, setCrossConnect] = useState(data.crossConnect)
+    const [fabricPort,  setFabricPort] = useState(data.fabricPort)
+    const [equinixConnect, setEquinixConnect] = useState(data.equinixConnect)
+    const [internetExchange, setInternetExchange] = useState(data.internetExchange)
+    const [metroConnect, setMetroConnect] = useState(data.metroConnect)
+
     const [isActive, setIsActive] = useState([1, 0, 0, 0, 0, 0])
-    const [currData, setCurrData] = useState(SHData)
+    const [currData, setCurrData] = useState(smartHands)
     const [chartData, setChartData] = useState([calculateTotalOrders(currData), calculateOnlineComposition(currData)])
+    
+    const fetchData = () => {
+
+        const getSmartHands = axios.get(`${process.env.GATSBY_SMART_HANDS_ORDERS_API_URL}`)
+        const getCrossConnect = axios.get(`${process.env.CROSS_CONNECT_ORDERS_API_URL}`)
+        const getFabricPort = axios.get(`${process.env.GATSBY_FABRIC_PORT_ORDERS_API_URL}`)
+        const getEquinixConnect = axios.get(`${process.env.GATSBY_EQUINIX_CONNECT_API_URL}`)
+        const getInternetExchange = axios.get(`${process.env.GATSBY_INTERNET_EXCHANGE_API_URL}`)
+        const getMetroConnect = axios.get(`${process.env.GATSBY_METRO_CONNECT_API_URL}`)
+
+        axios.all([getSmartHands, getCrossConnect, getFabricPort, getEquinixConnect, getInternetExchange, getMetroConnect])
+            .then(axios.spread((...allData) => {
+                setSmartHands(allData[0].data)
+                setCrossConnect(allData[1].data)
+                setFabricPort(allData[2].data)
+                setEquinixConnect(allData[3].data)
+                setInternetExchange(allData[4].data)
+                setMetroConnect(allData[5].data)
+            })
+            )
+    }
+
+    // useEffect(() => {
+    //     fetchData()
+    // }, [])
 
     const updateState = (data, action) => {
         if (action === 'add') {
@@ -286,12 +183,12 @@ const ComboChart = () => {
 
     return (
         <div className={styles.ordersChartsContainer}>
-            <button className={`${styles.selectorBtn} ${isActive[0] === 1 && styles.active}`} onClick={() => handleClick(SHData, 0)}>Smart Hands</button>
-            <button className={`${styles.selectorBtn} ${isActive[1] === 1 && styles.active}`} onClick={() => handleClick(CCData, 1)}>Cross Connect</button>
-            <button className={`${styles.selectorBtn} ${isActive[2] === 1 && styles.active}`} onClick={() => handleClick(FPData, 2)}>Fabric Port</button>
-            <button className={`${styles.selectorBtn} ${isActive[3] === 1 && styles.active}`} onClick={() => handleClick(ECData, 3)}>Equinix Connect</button>
-            <button className={`${styles.selectorBtn} ${isActive[4] === 1 && styles.active}`} onClick={() => handleClick(IXData, 4)}>Internet Exchange</button>
-            <button className={`${styles.selectorBtn} ${isActive[5] === 1 && styles.active}`} onClick={() => handleClick(MCData, 5)}>Metro Connect</button>
+            <button className={`${styles.selectorBtn} ${isActive[0] === 1 && styles.active}`} onClick={() => handleClick(smartHands, 0)}>Smart Hands</button>
+            <button className={`${styles.selectorBtn} ${isActive[1] === 1 && styles.active}`} onClick={() => handleClick(crossConnect, 1)}>Cross Connect</button>
+            <button className={`${styles.selectorBtn} ${isActive[2] === 1 && styles.active}`} onClick={() => handleClick(fabricPort, 2)}>Fabric Port</button>
+            <button className={`${styles.selectorBtn} ${isActive[3] === 1 && styles.active}`} onClick={() => handleClick(equinixConnect, 3)}>Equinix Connect</button>
+            <button className={`${styles.selectorBtn} ${isActive[4] === 1 && styles.active}`} onClick={() => handleClick(internetExchange, 4)}>Internet Exchange</button>
+            <button className={`${styles.selectorBtn} ${isActive[5] === 1 && styles.active}`} onClick={() => handleClick(metroConnect, 5)}>Metro Connect</button>
             <div className={styles.ordersComboChart}>
                 <Chart type="line" data={orders_data} options={combo_chart_config} />
             </div>

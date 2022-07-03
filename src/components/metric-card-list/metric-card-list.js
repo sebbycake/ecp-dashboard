@@ -10,162 +10,23 @@ import reportIcon from "../../images/icons/report.png"
 import invoiceIcon from "../../images/icons/invoice.png"
 import notificationIcon from "../../images/icons/notification.png"
 
+import data from '../../dummy-data/metrics-data'
+
 const MetricCardList = ({ quarter }) => {
 
-    const dummyUsersData = [
-        {
-            "quarter": "2022 Q1",
-            "userAccounts": 1406,
-            "growthRate": -0.11
-        },
-        {
-            "quarter": "2021 Q4",
-            "userAccounts": 2324,
-            "growthRate": -0.09
-        },
-        {
-            "quarter": "2021 Q3",
-            "userAccounts": 2623,
-            "growthRate": 0.39
-        },
-        {
-            "quarter": "2021 Q2",
-            "userAccounts": 1371,
-            "growthRate": 0.18
-        },
-        {
-            "quarter": "2021 Q1",
-            "userAccounts": 1806,
-            "growthRate": -0.10
-        }
-    ]
-
-    const dummytwoWayCommsData = [
-        {
-            "quarter": "2022 Q1",
-            "totalNumber": 502,
-            "growthRate": -0.04
-        },
-        {
-            "quarter": "2021 Q4",
-            "totalNumber": 482,
-            "growthRate": -0.13
-        },
-        {
-            "quarter": "2021 Q3",
-            "totalNumber": 443,
-            "growthRate": -0.33
-        },
-        {
-            "quarter": "2021 Q2",
-            "totalNumber": 388,
-            "growthRate": 0.44
-        },
-        {
-            "quarter": "2021 Q1",
-            "totalNumber": 2131,
-            "growthRate": -0.66
-        }
-    ]
-
-    const dummyReportsData = [
-        {
-            "quarter": "2022 Q1",
-            "reports": 800,
-            "growthRate": 0.12
-        },
-        {
-            "quarter": "2021 Q4",
-            "reports": 700,
-            "growthRate": 0.13
-        },
-        {
-            "quarter": "2021 Q3",
-            "reports": 650,
-            "growthRate": 0.11
-        },
-        {
-            "quarter": "2021 Q2",
-            "reports": 634,
-            "growthRate": 0.16
-        },
-        {
-            "quarter": "2021 Q1",
-            "reports": 555,
-            "growthRate": 0.11
-        }
-    ]
-
-    
-    const dummyInvoicesData = [
-        {
-            "quarter": "2022 Q1",
-            "invoices": 100,
-            "growthRate": 0.05
-        },
-        {
-            "quarter": "2021 Q4",
-            "invoices": 90,
-            "growthRate": 0.11
-        },
-        {
-            "quarter": "2021 Q3",
-            "invoices": 80,
-            "growthRate": 0.10
-        },
-        {
-            "quarter": "2021 Q2",
-            "invoices": 70,
-            "growthRate": 0.09
-        },
-        {
-            "quarter": "2021 Q1",
-            "invoices": 65,
-            "growthRate": 0.11
-        }
-    ]
-
-    const dummyNotificationsData = [
-        {
-            "quarter": "2022 Q1",
-            "notifications": 123,
-            "growthRate": 0.10
-        },
-        {
-            "quarter": "2021 Q4",
-            "notifications": 111,
-            "growthRate": 0.05
-        },
-        {
-            "quarter": "2021 Q3",
-            "notifications": 102,
-            "growthRate": 0.04
-        },
-        {
-            "quarter": "2021 Q2",
-            "notifications": 104,
-            "growthRate": 0.03
-        },
-        {
-            "quarter": "2021 Q1",
-            "notifications": 101,
-            "growthRate": 0.01
-        }
-    ]
-
-    const [users, setUsers] = useState([])
-    const [comms, setComms] = useState([])
-    const [reports, setReports] = useState([])
-    const [invoices, setInvoices] = useState([])
-    const [notifications, setNotifications] = useState([])
+    const [users, setUsers] = useState(data.users)
+    const [comms, setComms] = useState(data.comms)
+    const [reports, setReports] = useState(data.reports)
+    const [invoices, setInvoices] = useState(data.invoices)
+    const [notifications, setNotifications] = useState(data.notifications)
 
     const fetchData = () => {
 
-        const usersAPI = 'https://jsonplaceholder.typicode.com/posts/1'
-        const commsAPI = 'https://jsonplaceholder.typicode.com/posts/2'
-        const reportsAPI = 'https://jsonplaceholder.typicode.com/posts/4'
-        const invoicesAPI = 'https://jsonplaceholder.typicode.com/posts/5'
-        const notificationsAPI = 'https://jsonplaceholder.typicode.com/posts/6'
+        const usersAPI = `${process.env.GATSBY_TOTAL_USERS_API_URL}`
+        const commsAPI = `${process.env.GATSBY_TOTAL_TWO_WAY_COMMS_API_URL}`
+        const reportsAPI = `${process.env.GATSBY_TOTAL_REPORTS_API_URL}`
+        const invoicesAPI = `${process.env.GATSBY_TOTAL_INVOICES_API_URL}`
+        const notificationsAPI = `${process.env.GATSBY_TOTAL_NOTIFICATIONS_API_URL}`
 
         const getUsers = axios.get(usersAPI)
         const getComms = axios.get(commsAPI)
@@ -184,19 +45,19 @@ const MetricCardList = ({ quarter }) => {
             )
     }
 
-    useEffect(() => {
-        fetchData()
-    }, [])
+    // useEffect(() => {
+    //     fetchData()
+    // }, [])
 
     return (
         <div>
             <MetricTitle title="Quarterly Overview" />
             <div className={styles.metricsGrid}>
-                <MetricCard title="Users" icon={userIcon} stats={dummyUsersData[quarter].userAccounts} growth_rate={dummyUsersData[quarter].growthRate} />
-                <MetricCard title="2-way Comms" icon={commsIcon} stats={dummytwoWayCommsData[quarter].totalNumber} growth_rate={dummytwoWayCommsData[quarter].growthRate} />
-                <MetricCard title="Reports" icon={reportIcon} stats={dummyReportsData[quarter].reports} growth_rate={dummyReportsData[quarter].growthRate} />
-                <MetricCard title="Invoices" icon={invoiceIcon} stats={dummyInvoicesData[quarter].invoices} growth_rate={dummyInvoicesData[quarter].growthRate} />
-                <MetricCard title="Notifications" icon={notificationIcon} stats={dummyNotificationsData[quarter].notifications} growth_rate={dummyNotificationsData[quarter].growthRate} />
+                <MetricCard title="Users" icon={userIcon} stats={users[quarter].userAccounts} growth_rate={users[quarter].growthRate} />
+                <MetricCard title="2-way Comms" icon={commsIcon} stats={comms[quarter].totalNumber} growth_rate={comms[quarter].growthRate} />
+                <MetricCard title="Reports" icon={reportIcon} stats={reports[quarter].reports} growth_rate={reports[quarter].growthRate} />
+                <MetricCard title="Invoices" icon={invoiceIcon} stats={invoices[quarter].invoices} growth_rate={invoices[quarter].growthRate} />
+                <MetricCard title="Notifications" icon={notificationIcon} stats={notifications[quarter].notifications} growth_rate={notifications[quarter].growthRate} />
             </div>
         </div>
     )
