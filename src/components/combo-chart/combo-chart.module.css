@@ -1,0 +1,31 @@
+.ordersChartsContainer {
+    background-color: var(--container-color);
+    border-radius: 24px;
+    height: 570px;
+    margin-top: 10px;
+}
+
+.ordersComboChart {
+    width: inherit;
+    height: inherit;
+}
+
+.selectorBtn {
+    background-color: var(--container-color);
+    border: none;
+    border-bottom: 2px var(--selector-btn) solid;
+    height: 50px;
+    width: calc(31vw/3);
+    cursor: pointer;
+}
+
+.selectorBtn:hover {
+    border-bottom: 2px var(--selector-btn-active) solid;
+}
+
+.active {
+    color: #1479FF;
+    font-weight: 700;
+    border-bottom: 2px var(--selector-btn-active) solid;
+    cursor: default;
+}
