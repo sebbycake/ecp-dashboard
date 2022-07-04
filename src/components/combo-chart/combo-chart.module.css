@@ -1,8 +1,7 @@
 .ordersChartsContainer {
     background-color: var(--container-color);
     border-radius: 24px;
-    height: 570px;
-    margin-top: 10px;
+    height: 560px;
 }
 
 .ordersComboChart {
@@ -10,12 +9,18 @@
     height: inherit;
 }
 
+.selectorBtnContainer {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .selectorBtn {
     background-color: var(--container-color);
     border: none;
     border-bottom: 2px var(--selector-btn) solid;
     height: 50px;
-    width: calc(31vw/3);
+    width: calc(33vw/3);
     cursor: pointer;
 }
 

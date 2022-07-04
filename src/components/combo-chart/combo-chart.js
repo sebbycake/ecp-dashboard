@@ -182,15 +182,19 @@ const ComboChart = () => {
     }
 
     return (
-        <div className={styles.ordersChartsContainer}>
-            <button className={`${styles.selectorBtn} ${isActive[0] === 1 && styles.active}`} onClick={() => handleClick(smartHands, 0)}>Smart Hands</button>
-            <button className={`${styles.selectorBtn} ${isActive[1] === 1 && styles.active}`} onClick={() => handleClick(crossConnect, 1)}>Cross Connect</button>
-            <button className={`${styles.selectorBtn} ${isActive[2] === 1 && styles.active}`} onClick={() => handleClick(fabricPort, 2)}>Fabric Port</button>
-            <button className={`${styles.selectorBtn} ${isActive[3] === 1 && styles.active}`} onClick={() => handleClick(equinixConnect, 3)}>Equinix Connect</button>
-            <button className={`${styles.selectorBtn} ${isActive[4] === 1 && styles.active}`} onClick={() => handleClick(internetExchange, 4)}>Internet Exchange</button>
-            <button className={`${styles.selectorBtn} ${isActive[5] === 1 && styles.active}`} onClick={() => handleClick(metroConnect, 5)}>Metro Connect</button>
-            <div className={styles.ordersComboChart}>
-                <Chart type="line" data={orders_data} options={combo_chart_config} />
+        <div>
+            <div className={styles.selectorBtnContainer}>
+                <button className={`${styles.selectorBtn} ${isActive[0] === 1 && styles.active}`} onClick={() => handleClick(smartHands, 0)}>Smart Hands</button>
+                <button className={`${styles.selectorBtn} ${isActive[1] === 1 && styles.active}`} onClick={() => handleClick(crossConnect, 1)}>Cross Connect</button>
+                <button className={`${styles.selectorBtn} ${isActive[2] === 1 && styles.active}`} onClick={() => handleClick(fabricPort, 2)}>Fabric Port</button>
+                <button className={`${styles.selectorBtn} ${isActive[3] === 1 && styles.active}`} onClick={() => handleClick(equinixConnect, 3)}>Equinix Connect</button>
+                <button className={`${styles.selectorBtn} ${isActive[4] === 1 && styles.active}`} onClick={() => handleClick(internetExchange, 4)}>Internet Exchange</button>
+                <button className={`${styles.selectorBtn} ${isActive[5] === 1 && styles.active}`} onClick={() => handleClick(metroConnect, 5)}>Metro Connect</button>
+            </div>
+            <div className={styles.ordersChartsContainer}>
+                <div className={styles.ordersComboChart}>
+                    <Chart type="line" data={orders_data} options={combo_chart_config} />
+                </div>
             </div>
         </div>
     )
