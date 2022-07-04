@@ -36,11 +36,33 @@ const ComboChart = () => {
     const [metroConnect, setMetroConnect] = useState(data.metroConnect)
 
     const [isActive, setIsActive] = useState([1, 0, 0, 0, 0, 0])
-    const [currData, setCurrData] = useState(smartHands)
+    const [currData, setCurrData] = useState([
+        {
+            "quarter": "2022 Q1",
+            "onlineOrders": 120,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q4",
+            "onlineOrders": 102,
+            "offlineOrders": 44
+        },
+        {
+            "quarter": "2021 Q3",
+            "onlineOrders": 100,
+            "offlineOrders": 50
+        },
+        {
+            "quarter": "2021 Q2",
+            "onlineOrders": 99,
+            "offlineOrders": 40
+        }
+    ])
     const [chartData, setChartData] = useState([calculateTotalOrders(currData), calculateOnlineComposition(currData)])
     
     const fetchData = () => {
 
+        const getInitialData = axios.get(`${process.env.GATSBY_SMART_HANDS_ORDERS_API_URL}`)
         const getSmartHands = axios.get(`${process.env.GATSBY_SMART_HANDS_ORDERS_API_URL}`)
         const getCrossConnect = axios.get(`${process.env.CROSS_CONNECT_ORDERS_API_URL}`)
         const getFabricPort = axios.get(`${process.env.GATSBY_FABRIC_PORT_ORDERS_API_URL}`)
@@ -48,14 +70,15 @@ const ComboChart = () => {
         const getInternetExchange = axios.get(`${process.env.GATSBY_INTERNET_EXCHANGE_API_URL}`)
         const getMetroConnect = axios.get(`${process.env.GATSBY_METRO_CONNECT_API_URL}`)
 
-        axios.all([getSmartHands, getCrossConnect, getFabricPort, getEquinixConnect, getInternetExchange, getMetroConnect])
+        axios.all([getInitialData, getSmartHands, getCrossConnect, getFabricPort, getEquinixConnect, getInternetExchange, getMetroConnect])
             .then(axios.spread((...allData) => {
-                setSmartHands(allData[0].data)
-                setCrossConnect(allData[1].data)
-                setFabricPort(allData[2].data)
-                setEquinixConnect(allData[3].data)
-                setInternetExchange(allData[4].data)
-                setMetroConnect(allData[5].data)
+                setCurrData(allData[0].data.data)
+                setSmartHands(allData[1].data.data)
+                setCrossConnect(allData[2].data.data)
+                setFabricPort(allData[3].data.data)
+                setEquinixConnect(allData[4].data.data)
+                setInternetExchange(allData[5].data.data)
+                setMetroConnect(allData[6].data.data)
             })
             )
     }
@@ -65,20 +88,21 @@ const ComboChart = () => {
     // }, [])
 
     const updateState = (data, action) => {
+        let updatedData = [...currData]
         if (action === 'add') {
-            for (let i = 0; i < currData.length; i++) {
-                currData[i].onlineOrders += data[i].onlineOrders
-                currData[i].offlineOrders += data[i].offlineOrders
+            for (let i = 0; i < updatedData.length; i++) {
+                updatedData[i].onlineOrders += data[i].onlineOrders
+                updatedData[i].offlineOrders += data[i].offlineOrders
             }
         }
         if (action === 'subtract') {
-            for (let i = 0; i < currData.length; i++) {
-                currData[i].onlineOrders -= data[i].onlineOrders
-                currData[i].offlineOrders -= data[i].offlineOrders
+            for (let i = 0; i < updatedData.length; i++) {
+                updatedData[i].onlineOrders -= data[i].onlineOrders
+                updatedData[i].offlineOrders -= data[i].offlineOrders
             }
         }
-        setCurrData(currData)
-        setChartData([calculateTotalOrders(currData), calculateOnlineComposition(currData)])
+        setCurrData(updatedData)
+        setChartData([calculateTotalOrders(updatedData), calculateOnlineComposition(updatedData)])
     }
 
     const handleClick = (data, index) => {
