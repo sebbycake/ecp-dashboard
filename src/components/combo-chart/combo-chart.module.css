@@ -34,3 +34,17 @@
     border-bottom: 2px var(--selector-btn-active) solid;
     cursor: default;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .selectorBtn {
+        width: 15vw;
+        font-size: 11px;
+    }
+
+    .ordersChartsContainer {
+        height: 320px;
+    }
+    
+}

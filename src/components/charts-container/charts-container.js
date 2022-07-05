@@ -33,13 +33,6 @@ const ChartsContainer = ({ quarter }) => {
     return (
         <section className={styles.ordersCardContainer}>
 
-            <div className={styles.ordersGridContainer}>
-                <MetricTitle title="Orders By Category" />
-                <div className={styles.ordersCharts}>
-                    <ComboChart />
-                </div> {/* end of orders charts */}
-            </div> {/* end of grid container */}
-
             <div className={styles.ordersMetricCardA}>
                 <MetricTitle title="Orders By Channel" />
                 <OrderCard ordersDataObj={totalOrdersData[quarter]} />
@@ -49,6 +42,13 @@ const ChartsContainer = ({ quarter }) => {
                 <MetricTitle title="Cancelled Orders By Channel" />
                 <OrderCard ordersDataObj={cancelledOrdersData[quarter]} />
             </div>
+            
+            <div className={styles.ordersGridContainer}>
+                <MetricTitle title="Orders By Category" />
+                <div className={styles.ordersCharts}>
+                    <ComboChart />
+                </div> {/* end of orders charts */}
+            </div> {/* end of grid container */}
 
         </section>
     )

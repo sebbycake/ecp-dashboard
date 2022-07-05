@@ -64,3 +64,16 @@
 .userIcon, .caretUpIcon {
     width: 24px;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .metricCard {
+        margin-bottom: 20px;
+    }
+
+    .metricNumber {
+        font-size: 40px;
+    }
+
+}
