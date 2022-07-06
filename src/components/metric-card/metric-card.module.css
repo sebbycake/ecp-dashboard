@@ -77,3 +77,42 @@
     }
 
 }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+    .metricCard {
+        height: 120px;
+    }
+
+    .metricIconContainer {
+        margin-left: 16px;
+    }
+    
+    .iconContainer {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .metricDetailsContainer {
+        margin-left: 16px;
+    }
+
+    .metricNumber {
+        font-size: 30px;
+    }
+
+    .metricIconName {
+        font-size: 12px;
+    }
+
+    .metricGrowthRate {
+        font-size: 12px;
+    }
+    
+    .userIcon, .caretUpIcon {
+        width: 16px;
+    }
+
+}

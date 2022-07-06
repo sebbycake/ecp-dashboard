@@ -34,3 +34,28 @@
     }
     
 }
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+    .ordersMetricCard {
+        height: 180px;
+        margin-top: 4px;
+        justify-content: space-evenly;
+    }
+
+    .ordersPieChart {
+        height: 150px;
+        width: 150px;
+    }
+
+    .totalOrders {
+        font-size: 30px;
+    }
+
+    .individualOrders {
+        font-size: 12px;
+    }
+
+}
