@@ -50,8 +50,8 @@ const OrderCard = ({ ordersDataObj }) => {
             </div>
             <div>
                 <div className={styles.totalOrders}>{ordersDataObj.onlineOrders + ordersDataObj.offlineOrders}</div>
-                <div>{`Online: ${ordersDataObj.onlineOrders}`}</div>
-                <div>{`Offline: ${ordersDataObj.offlineOrders}`}</div>
+                <div className={styles.individualOrders}>{`Online: ${ordersDataObj.onlineOrders}`}</div>
+                <div className={styles.individualOrders}>{`Offline: ${ordersDataObj.offlineOrders}`}</div>
             </div>
         </div>
     )

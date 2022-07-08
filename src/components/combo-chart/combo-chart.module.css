@@ -12,7 +12,6 @@
 .selectorBtnContainer {
     margin-bottom: 8px;
     display: flex;
-    justify-content: flex-end;
 }
 
 .selectorBtn {
@@ -33,4 +32,33 @@
     font-weight: 700;
     border-bottom: 2px var(--selector-btn-active) solid;
     cursor: default;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .selectorBtn {
+        width: 15vw;
+        font-size: 11px;
+    }
+
+    .ordersChartsContainer {
+        height: 320px;
+    }
+    
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+    .ordersChartsContainer {
+        height: 350px;
+    }
+
+    .selectorBtn {
+        height: 40px;
+        width: 11vw;
+        font-size: 11px;
+    }
+
 }

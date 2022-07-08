@@ -22,3 +22,17 @@
 .options {
     height: 50px;
 }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+    .logo {
+        width: 140px;
+    }
+
+    .dropdownBtn {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+}

@@ -7,7 +7,6 @@ import axios from 'axios';
 import userIcon from "../../images/icons/user.png"
 import commsIcon from "../../images/icons/communication.png"
 import reportIcon from "../../images/icons/report.png"
-import invoiceIcon from "../../images/icons/invoice.png"
 import notificationIcon from "../../images/icons/notification.png"
 
 import data from '../../dummy-data/metrics-data'
@@ -17,7 +16,6 @@ const MetricCardList = ({ quarter }) => {
     const [users, setUsers] = useState(data.users)
     const [comms, setComms] = useState(data.comms)
     const [reports, setReports] = useState(data.reports)
-    const [invoices, setInvoices] = useState(data.invoices)
     const [notifications, setNotifications] = useState(data.notifications)
 
     const fetchData = () => {
@@ -25,22 +23,19 @@ const MetricCardList = ({ quarter }) => {
         const usersAPI = `${process.env.GATSBY_TOTAL_USERS_API_URL}`
         const commsAPI = `${process.env.GATSBY_TOTAL_TWO_WAY_COMMS_API_URL}`
         const reportsAPI = `${process.env.GATSBY_TOTAL_REPORTS_API_URL}`
-        const invoicesAPI = `${process.env.GATSBY_TOTAL_INVOICES_API_URL}`
         const notificationsAPI = `${process.env.GATSBY_TOTAL_NOTIFICATIONS_API_URL}`
 
         const getUsers = axios.get(usersAPI)
         const getComms = axios.get(commsAPI)
         const getReports = axios.get(reportsAPI)
-        const getInvoices = axios.get(invoicesAPI)
         const getNotifications = axios.get(notificationsAPI)
 
-        axios.all([getUsers, getComms, getReports, getInvoices, getNotifications])
+        axios.all([getUsers, getComms, getReports, getNotifications])
             .then(axios.spread((...allData) => {
                 setUsers(allData[0].data)
                 setComms(allData[1].data)
                 setReports(allData[2].data)
-                setInvoices(allData[3].data)
-                setNotifications(allData[4].data)
+                setNotifications(allData[3].data)
             })
             )
     }
@@ -56,7 +51,6 @@ const MetricCardList = ({ quarter }) => {
                 <MetricCard title="Users" icon={userIcon} stats={users[quarter].userAccounts} growth_rate={users[quarter].growthRate} />
                 <MetricCard title="2-way Comms" icon={commsIcon} stats={comms[quarter].totalNumber} growth_rate={comms[quarter].growthRate} />
                 <MetricCard title="Reports" icon={reportIcon} stats={reports[quarter].reports} growth_rate={reports[quarter].growthRate} />
-                <MetricCard title="Invoices" icon={invoiceIcon} stats={invoices[quarter].invoices} growth_rate={invoices[quarter].growthRate} />
                 <MetricCard title="Notifications" icon={notificationIcon} stats={notifications[quarter].notifications} growth_rate={notifications[quarter].growthRate} />
             </div>
         </div>
