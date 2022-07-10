@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react"
 import equinix_logo from "../../images/equinix_logo.png"
 import * as styles from "./header.module.css"
 
-import StateContainer from "../state-container/state-container"
-
 import Loader from "../loader/loader"
 
-const Header = () => {
-
-    const [quarter, setQuarter] = useState(0);
+const Header = ({ setQuarter }) => {
+    
     const [listOfQuarters, setListOfQuarters] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -48,9 +45,6 @@ const Header = () => {
 
     useEffect(() => {
         extractQuarters(sampleData)
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 2000)
     }, [])
 
     return (
@@ -59,14 +53,13 @@ const Header = () => {
                 <div>
                     <img className={styles.logo} src={equinix_logo} alt="Equinix Logo" />
                 </div>
-                <select className={styles.dropdownBtn} value={quarter} onChange={handleChange}>
+                <select className={styles.dropdownBtn} onChange={handleChange}>
                     <option className={styles.options} value="0">{listOfQuarters[0]}</option>
                     <option className={styles.options} value="1">{listOfQuarters[1]}</option>
                     <option className={styles.options} value="2">{listOfQuarters[2]}</option>
                     <option className={styles.options} value="3">{listOfQuarters[3]}</option>
                 </select>
             </div>
-            { isLoading ? <Loader /> : <StateContainer quarter={quarter} /> }
         </div>
     )
 
