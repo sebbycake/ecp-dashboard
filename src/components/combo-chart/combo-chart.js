@@ -62,13 +62,13 @@ const ComboChart = () => {
     
     const fetchData = () => {
 
-        const getInitialData = axios.get(`${process.env.GATSBY_SMART_HANDS_ORDERS_API_URL}`)
-        const getSmartHands = axios.get(`${process.env.GATSBY_SMART_HANDS_ORDERS_API_URL}`)
-        const getCrossConnect = axios.get(`${process.env.CROSS_CONNECT_ORDERS_API_URL}`)
-        const getFabricPort = axios.get(`${process.env.GATSBY_FABRIC_PORT_ORDERS_API_URL}`)
-        const getEquinixConnect = axios.get(`${process.env.GATSBY_EQUINIX_CONNECT_API_URL}`)
-        const getInternetExchange = axios.get(`${process.env.GATSBY_INTERNET_EXCHANGE_API_URL}`)
-        const getMetroConnect = axios.get(`${process.env.GATSBY_METRO_CONNECT_API_URL}`)
+        const getInitialData = axios.get(process.env.GATSBY_SMART_HANDS_ORDERS_API_URL)
+        const getSmartHands = axios.get(process.env.GATSBY_SMART_HANDS_ORDERS_API_URL)
+        const getCrossConnect = axios.get(process.env.CROSS_CONNECT_ORDERS_API_URL)
+        const getFabricPort = axios.get(process.env.GATSBY_FABRIC_PORT_ORDERS_API_URL)
+        const getEquinixConnect = axios.get(process.env.GATSBY_EQUINIX_CONNECT_API_URL)
+        const getInternetExchange = axios.get(process.env.GATSBY_INTERNET_EXCHANGE_API_URL)
+        const getMetroConnect = axios.get(process.env.GATSBY_METRO_CONNECT_API_URL)
 
         axios.all([getInitialData, getSmartHands, getCrossConnect, getFabricPort, getEquinixConnect, getInternetExchange, getMetroConnect])
             .then(axios.spread((...allData) => {
@@ -122,8 +122,8 @@ const ComboChart = () => {
         datasets: [
             {
                 label: "Total Orders",
-                backgroundColor: '#043776',
-                borderColor: '#043776',
+                backgroundColor: '#A1A1A4',
+                borderColor: '#A1A1A4',
                 data: chartData[0],     
                 type: "bar",
                 yAxisID: 'y',
@@ -138,8 +138,8 @@ const ComboChart = () => {
             },
             {
                 label: "Online Orders (ECP + CSC)",
-                backgroundColor: '#A1A1A4',
-                borderColor: '#A1A1A4',
+                backgroundColor: '#043776',
+                borderColor: '#043776',
                 data: chartData[1],
                 type: 'line',
                 yAxisID: 'percentage',

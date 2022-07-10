@@ -20,10 +20,10 @@ const MetricCardList = ({ quarter }) => {
 
     const fetchData = () => {
 
-        const usersAPI = `${process.env.GATSBY_TOTAL_USERS_API_URL}`
-        const commsAPI = `${process.env.GATSBY_TOTAL_TWO_WAY_COMMS_API_URL}`
-        const reportsAPI = `${process.env.GATSBY_TOTAL_REPORTS_API_URL}`
-        const notificationsAPI = `${process.env.GATSBY_TOTAL_NOTIFICATIONS_API_URL}`
+        const usersAPI = process.env.GATSBY_TOTAL_USERS_API_URL
+        const commsAPI = process.env.GATSBY_TOTAL_TWO_WAY_COMMS_API_URL
+        const reportsAPI = process.env.GATSBY_TOTAL_REPORTS_API_URL
+        const notificationsAPI = process.env.GATSBY_TOTAL_NOTIFICATIONS_API_URL
 
         const getUsers = axios.get(usersAPI)
         const getComms = axios.get(commsAPI)

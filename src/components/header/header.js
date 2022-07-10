@@ -18,38 +18,31 @@ const Header = () => {
 
     const sampleData = [
         {
-            "quarter": "2022 Q1",
+            "quarter": "Q1 2022",
             "onlineOrders": 272,
             "offlineOrders": 2312
         },
         {
-            "quarter": "2021 Q4",
+            "quarter": "Q4 2021",
             "onlineOrders": 143,
             "offlineOrders": 358
         },
         {
-            "quarter": "2021 Q3",
+            "quarter": "Q3 2021",
             "onlineOrders": 16751,
             "offlineOrders": 10392
         },
         {
-            "quarter": "2021 Q2",
+            "quarter": "Q2 2021",
             "onlineOrders": 62425,
             "offlineOrders": 7686
-        },
-        {
-            "quarter": "2021 Q1",
-            "onlineOrders": 1
         }
     ]
 
-    const reverseString = (str) => str.split(" ").reverse().join(" ")
 
     const extractQuarters = (data) => {
         const qtrs = []
-        data.forEach(obj => {
-            qtrs.push(reverseString(obj.quarter))
-        })
+        data.forEach(obj => qtrs.push(obj.quarter))
         setListOfQuarters(qtrs)
     }
 
