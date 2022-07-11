@@ -11,7 +11,18 @@ import favicon from "../images/icons/favicon.ico";
 const IndexPage = () => {
 	const [quarter, setQuarter] = useState(0);
 
-	const queryClient = new QueryClient();
+	const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
+	const queryClient = new QueryClient({
+		defaultOptions: {
+			queries: {
+				refetchOnWindowFocus: false,
+				refetchOnmount: false,
+				refetchOnReconnect: false,
+				retry: false,
+				staleTime: twentyFourHoursInMs,
+			},
+		},
+	});
 
 	return (
 		<QueryClientProvider client={queryClient}>
