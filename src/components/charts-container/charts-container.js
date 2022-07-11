@@ -5,14 +5,12 @@ import MetricTitle from "../metric-title/metric-title";
 import OrderCard from "../order-card/order-card"
 import ComboChart from "../combo-chart/combo-chart"
 
-import data from "../../dummy-data/orders-data"
-
 import { useTotalOrdersQuery, useCancelledOrdersQuery, useTestQuery } from "../../queries"
 
 const ChartsContainer = ({ quarter }) => {
 
-    const { data: totalOrdersData } = useTotalOrdersQuery()
-    const { data: cancelledOrdersData } = useCancelledOrdersQuery()
+    const { status: totalOrdersStatus, data: totalOrdersData } = useTotalOrdersQuery()
+    const { status: cancelledOrdersStatus, data: cancelledOrdersData } = useCancelledOrdersQuery()
     const { data: testData } = useTestQuery()
 
     return (
@@ -20,12 +18,12 @@ const ChartsContainer = ({ quarter }) => {
 
             <div className={styles.ordersMetricCardA}>
                 <MetricTitle title="Orders By Channel" />
-                {/* <OrderCard ordersDataObj={totalOrdersData.data.data[quarter]} /> */}
+                <OrderCard status={totalOrdersStatus} data={totalOrdersData} quarter={quarter} />
             </div>
 
             <div className={styles.ordersMetricCardB}>
                 <MetricTitle title="Cancelled Orders By Channel" />
-                {/* <OrderCard ordersDataObj={cancelledOrdersData.data.data[quarter]} /> */}
+                <OrderCard  status={cancelledOrdersStatus} data={cancelledOrdersData} quarter={quarter}/>
             </div>
             
             <div className={styles.ordersGridContainer}>
