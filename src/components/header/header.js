@@ -4,48 +4,16 @@ import * as styles from "./header.module.css"
 
 import Loader from "../loader/loader"
 
+import { useTotalOrdersQuery, useCancelledOrdersQuery } from "../../queries"
+
 const Header = ({ setQuarter }) => {
     
-    const [listOfQuarters, setListOfQuarters] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const { data: listOfQuarters } = useTotalOrdersQuery()
 
     const handleChange = (e) => {
         setQuarter(e.target.value);
     }
-
-    const sampleData = [
-        {
-            "quarter": "Q1 2022",
-            "onlineOrders": 272,
-            "offlineOrders": 2312
-        },
-        {
-            "quarter": "Q4 2021",
-            "onlineOrders": 143,
-            "offlineOrders": 358
-        },
-        {
-            "quarter": "Q3 2021",
-            "onlineOrders": 16751,
-            "offlineOrders": 10392
-        },
-        {
-            "quarter": "Q2 2021",
-            "onlineOrders": 62425,
-            "offlineOrders": 7686
-        }
-    ]
-
-
-    const extractQuarters = (data) => {
-        const qtrs = []
-        data.forEach(obj => qtrs.push(obj.quarter))
-        setListOfQuarters(qtrs)
-    }
-
-    useEffect(() => {
-        extractQuarters(sampleData)
-    }, [])
 
     return (
         <div>
@@ -54,10 +22,10 @@ const Header = ({ setQuarter }) => {
                     <img className={styles.logo} src={equinix_logo} alt="Equinix Logo" />
                 </div>
                 <select className={styles.dropdownBtn} onChange={handleChange}>
-                    <option className={styles.options} value="0">{listOfQuarters[0]}</option>
-                    <option className={styles.options} value="1">{listOfQuarters[1]}</option>
-                    <option className={styles.options} value="2">{listOfQuarters[2]}</option>
-                    <option className={styles.options} value="3">{listOfQuarters[3]}</option>
+                    {/* <option className={styles.options} value="0">{listOfQuarters.data.data[0].quarter}</option>
+                    <option className={styles.options} value="1">{listOfQuarters.data.data[1].quarter}</option>
+                    <option className={styles.options} value="2">{listOfQuarters.data.data[2].quarter}</option>
+                    <option className={styles.options} value="3">{listOfQuarters.data.data[3].quarter}</option> */}
                 </select>
             </div>
         </div>
