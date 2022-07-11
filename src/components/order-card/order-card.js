@@ -57,7 +57,7 @@ const OrderCard = ({ status, data, quarter }) => {
 			{status === "loading" ? (
 				<p style={{ marginLeft: "30px" }}>Loading data...</p>
 			) : status === "error" ? (
-				<p style={{ marginLeft: "30px" }}>Error retrieving data.</p>
+				<p style={{ marginLeft: "30px" }}>Error retrieving data</p>
 			) : (
 				<div>
 					<div className={styles.ordersPieChart}>
