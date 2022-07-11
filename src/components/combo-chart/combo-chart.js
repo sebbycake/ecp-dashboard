@@ -13,6 +13,8 @@ import {
 	useMetroConnectQuery,
 } from "../../queries";
 
+import Loader from "../loader/loader"
+
 ChartJS.register(...registerables);
 
 const ComboChart = () => {
@@ -78,8 +80,8 @@ const ComboChart = () => {
 				<div className={styles.ordersChartsContainer}>
 					<p style={{ marginLeft: "30px" }}>
 						{initialDataStatus === "loading"
-							? "Loading data..."
-							: "Error retrieving data"}
+							? <Loader />
+							: <p className="errorMsg">Error retrieving data</p>}
 					</p>
 				</div>
 			</div>

@@ -28,3 +28,8 @@ body {
     height: 100vh;
     padding: 24px;
 }
+
+.errorMsg {
+    color: red;
+    font-weight: 600;
+}

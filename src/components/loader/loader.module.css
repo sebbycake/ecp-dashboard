@@ -1,40 +1,41 @@
-.spinner {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    margin: 35vh auto;
+.ldsFacebook {
+	display: inline-block;
+	position: relative;
+	width: 60px;
+	height: 60px;
 }
 
-.doubleBounce1, .doubleBounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #1479FF;
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-    animation: sk-bounce 2.0s infinite ease-in-out;
+.ldsFacebook div {
+	display: inline-block;
+	position: absolute;
+	left: 8px;
+	width: 13px;
+	background: #cef;
+	animation: ldsFacebook 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
-.doubleBounce2 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
+.ldsFacebook div:nth-child(1) {
+	left: 8px;
+	animation-delay: -0.24s;
 }
 
-@-webkit-keyframes sk-bounce {
-    0%, 100% { -webkit-transform: scale(0.0) }
-    50% { -webkit-transform: scale(1.0) }
+.ldsFacebook div:nth-child(2) {
+	left: 32px;
+	animation-delay: -0.12s;
 }
 
-@keyframes sk-bounce {
-    0%, 100% { 
-      transform: scale(0.0);
-      -webkit-transform: scale(0.0);
-    } 50% { 
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-    }
+.ldsFacebook div:nth-child(3) {
+	left: 56px;
+	animation-delay: 0;
+}
+
+@keyframes ldsFacebook {
+	0% {
+		top: 8px;
+		height: 64px;
+	}
+	50%, 100% {
+		top: 24px;
+		height: 32px;
+	}
 }

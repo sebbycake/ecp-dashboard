@@ -3,6 +3,9 @@ import * as styles from "./order-card.module.css";
 import { Chart } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Pie } from "react-chartjs-2";
+
+import Loader from "../loader/loader"
+
 Chart.register(ChartDataLabels);
 
 const OrderCard = ({ status, data, quarter }) => {
@@ -55,9 +58,12 @@ const OrderCard = ({ status, data, quarter }) => {
 	return (
 		<div className={styles.ordersMetricCard}>
 			{status === "loading" ? (
-				<p style={{ marginLeft: "30px" }}>Loading data...</p>
+				// <p style={{ marginLeft: "30px" }}>Loading data...</p>
+				<div style={{ marginLeft: "30px" }}>
+					<Loader />
+				</div>
 			) : status === "error" ? (
-				<p style={{ marginLeft: "30px" }}>Error retrieving data</p>
+				<p style={{ marginLeft: "30px" }} className="errorMsg">Error retrieving data</p>
 			) : (
 				<div>
 					<div className={styles.ordersPieChart}>

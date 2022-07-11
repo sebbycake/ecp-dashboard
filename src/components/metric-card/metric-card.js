@@ -3,6 +3,8 @@ import caretUpIcon from "../../images/icons/caret-arrow-up.png";
 import caretDownIcon from "../../images/icons/caret-arrow-down.png";
 import * as styles from "./metric-card.module.css";
 
+import Loader from "../loader/loader"
+
 const MetricCard = ({ title, icon, status, data, quarter, key }) => {
 	let dataRetrieved;
 
@@ -20,9 +22,9 @@ const MetricCard = ({ title, icon, status, data, quarter, key }) => {
 			</div>
 			<div className={styles.metricDetailsContainer}>
 				{status === "loading" ? (
-					"Loading data..."
+					<Loader />
 				) : status === "error" ? (
-					"Error retrieving data"
+					<p className="errorMsg">Error retrieving data</p>
 				) : (
 					<div>
 						<div className={styles.metricNumber}>
